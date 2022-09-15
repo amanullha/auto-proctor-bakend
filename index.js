@@ -99,7 +99,30 @@ async function run() {
 
 
         })
-        // Add new question in the database 
+        // Add multiple question in the database 
+        app.post('/add-questions', async (req, res) => {
+
+            try {
+
+                const data = req.body;
+
+                // console.log("data: ", data);
+
+                const result = await questionsCollection.insertMany(data);
+
+                // console.log("result: ", result);
+
+                return res.send(result);
+
+
+            } catch (error) {
+
+                res.send(error)
+            }
+
+
+        })
+        // Delete question in the database 
         app.delete('/delete-question', async (req, res) => {
 
             try {
